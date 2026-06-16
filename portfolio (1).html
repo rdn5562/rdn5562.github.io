@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="my Portfolio" />
+  <title>Radin Roblox Portdolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-0: #0c0d0f;
+      --bg-1: #111316;
+      --bg-2: #181b1f;
+      --bg-3: #1e2227;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.14);
+      --text-primary: #f0f1f3;
+      --text-secondary: #8b909a;
+      --text-muted: #52575f;
+      --accent: #4f8ef7;
+      --accent-dim: rgba(79,142,247,0.12);
+      --accent-glow: rgba(79,142,247,0.25);
+      --green: #3ecf8e;
+      --green-dim: rgba(62,207,142,0.1);
+      --amber: #f5a623;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--bg-0);
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-0); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-3); border-radius: 3px; }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      transition: background var(--transition), backdrop-filter var(--transition);
+    }
+    nav.scrolled {
+      background: rgba(12,13,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      border: 1px solid rgba(79,142,247,0.35);
+      padding: 7px 18px;
+      border-radius: 6px;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .nav-cta:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .nav-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+    .nav-menu-btn span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text-secondary);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(12,13,15,0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+      flex-direction: column;
+      gap: 18px;
+      z-index: 99;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+    .hero-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(79,142,247,0.08) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+    .hero-name {
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1.0;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+    .hero-name span {
+      background: linear-gradient(135deg, #4f8ef7 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-title {
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-2);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .btn-secondary:hover { border-color: var(--border-hover); transform: translateY(-1px); }
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .hero-stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+    }
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+    }
+
+    #about { background: var(--bg-0); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .about-avatar-wrap {
+      position: relative;
+    }
+    .about-avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 360px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-avatar-placeholder {
+      font-size: 96px;
+      line-height: 1;
+      user-select: none;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .about-badge-icon { font-size: 24px; }
+    .about-badge-text { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+    .about-badge-value { font-weight: 700; font-size: 18px; color: var(--text-primary); }
+    .about-body { padding-top: 8px; }
+    .about-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+    .about-specialties {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .specialty-tag {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      transition: border-color var(--transition), color var(--transition);
+    }
+    .specialty-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    #projects { background: var(--bg-1); }
+    .projects-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .project-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color var(--transition), transform var(--transition);
+      position: relative;
+    }
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .project-card.featured {
+      grid-column: span 2;
+    }
+    .project-thumb {
+      aspect-ratio: 16/9;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-3);
+    }
+    .project-thumb-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .project-card:hover .project-thumb-inner { transform: scale(1.04); }
+    .project-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12,13,15,0.7) 0%, transparent 60%);
+    }
+    .project-phase-tabs {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+    .phase-tab {
+      background: rgba(12,13,15,0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 4px 9px;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .phase-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    .project-body { padding: 20px; }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .project-tag {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border-radius: 4px;
+      padding: 3px 7px;
+    }
+    .project-name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .project-desc {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .project-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .project-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .project-metric-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--green);
+      font-family: var(--font-mono);
+    }
+    .project-metric-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .project-expand-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 30px;
+      height: 30px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .project-card:hover .project-expand-btn {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .project-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8,9,11,0.92);
+      backdrop-filter: blur(12px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .project-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .project-modal {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      max-width: 720px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      transform: scale(0.96) translateY(12px);
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    .project-modal-overlay.open .project-modal {
+      transform: scale(1) translateY(0);
+    }
+    .modal-thumb {
+      aspect-ratio: 16/9;
+      background: var(--bg-3);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 96px;
+      position: relative;
+      overflow: hidden;
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: rgba(12,13,15,0.8);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: color var(--transition), border-color var(--transition);
+      z-index: 2;
+    }
+    .modal-close:hover { color: var(--text-primary); border-color: var(--border-hover); }
+    .modal-body { padding: 28px; }
+    .modal-phases {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .modal-phase-btn {
+      flex: 1;
+      min-width: 80px;
+      padding: 8px 14px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--bg-3);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      transition: all var(--transition);
+      text-align: center;
+    }
+    .modal-phase-btn.active {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .modal-phase-content {
+      background: var(--bg-3);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      min-height: 80px;
+      border: 1px solid var(--border);
+    }
+    .modal-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .modal-stat {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      text-align: center;
+    }
+    .modal-stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--green);
+      font-family: var(--font-mono);
+    }
+    .modal-stat-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 3px;
+    }
+
+    #showcase { background: var(--bg-1); }
+    .showcase-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .showcase-icon {
+      width: 110px;
+      height: 110px;
+      flex-shrink: 0;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+    }
+    .showcase-body { flex: 1; }
+    @media (max-width: 640px) {
+      .showcase-card { flex-direction: column; text-align: center; padding: 28px; }
+      .showcase-body .section-subtitle { max-width: none; }
+    }
+
+    #skills { background: var(--bg-0); }
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .skills-categories {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: sticky;
+      top: 80px;
+    }
+    .skill-cat-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      background: transparent;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-align: left;
+      transition: all var(--transition);
+    }
+    .skill-cat-btn:hover { background: var(--bg-2); color: var(--text-primary); }
+    .skill-cat-btn.active {
+      background: var(--bg-2);
+      border-color: var(--border);
+      color: var(--text-primary);
+    }
+    .skill-cat-icon { font-size: 18px; }
+    .skills-panel {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+    }
+    .skills-panel-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .skill-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .skill-item-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .skill-item-icon { font-size: 16px; }
+    .skill-level-tag {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .level-expert { background: rgba(62,207,142,0.12); color: var(--green); }
+    .level-advanced { background: rgba(79,142,247,0.12); color: var(--accent); }
+    .level-intermediate { background: rgba(245,166,35,0.12); color: var(--amber); }
+    .skill-bar-track {
+      height: 5px;
+      background: var(--bg-3);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      width: 0;
+      transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fill-expert { background: linear-gradient(90deg, #3ecf8e, #34d399); }
+    .fill-advanced { background: linear-gradient(90deg, #4f8ef7, #818cf8); }
+    .fill-intermediate { background: linear-gradient(90deg, #f5a623, #fbbf24); }
+    #journey { background: var(--bg-1); }
+    .timeline-container {
+      position: relative;
+      margin-top: 48px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      cursor: grab;
+      user-select: none;
+    }
+    .timeline-container:active { cursor: grabbing; }
+    .timeline-inner {
+      display: flex;
+      gap: 0;
+      position: relative;
+      min-width: max-content;
+      padding: 60px 40px 40px;
+    }
+    .timeline-line {
+      position: absolute;
+      top: 92px;
+      left: 40px;
+      right: 40px;
+      height: 2px;
+      background: var(--border);
+    }
+    .timeline-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #818cf8);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+    .timeline-item {
+      position: relative;
+      width: 240px;
+      flex-shrink: 0;
+    }
+    .timeline-dot-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .timeline-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--bg-3);
+      border: 2px solid var(--border);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+    .timeline-item.active .timeline-dot {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-dim);
+    }
+    .timeline-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin: 0 12px;
+      transition: border-color var(--transition);
+    }
+    .timeline-item.active .timeline-card { border-color: var(--accent); }
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 6px;
+      letter-spacing: 0.08em;
+    }
+    .timeline-milestone {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .timeline-detail {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .timeline-hint {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    #stats { background: var(--bg-0); }
+    .stats-dashboard {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+    .stats-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .stats-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .stats-header-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .stats-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #22c55e; }
+    .stats-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+    .stats-live {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--green);
+      font-family: var(--font-mono);
+    }
+    .stats-body {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .stat-block {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+    .stat-block-label {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .stat-block-value {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      font-family: var(--font-mono);
+    }
+    .stat-block-change {
+      font-size: 11px;
+      margin-top: 4px;
+      font-family: var(--font-mono);
+    }
+    .change-up { color: var(--green); }
+    .change-neutral { color: var(--text-muted); }
+    .stats-chart-row {
+      padding: 0 24px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .mini-chart {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+    .mini-chart-title {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      margin-bottom: 14px;
+    }
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 60px;
+    }
+    .bar-col { flex: 1; display: flex; flex-direction: column; gap: 4px; align-items: center; }
+    .bar {
+      width: 100%;
+      border-radius: 3px 3px 0 0;
+      transition: opacity var(--transition);
+    }
+    .bar:hover { opacity: 0.7; }
+    .bar-col-label { font-size: 9px; color: var(--text-muted); font-family: var(--font-mono); }
+    .donut-wrap { display: flex; align-items: center; gap: 20px; }
+    .donut { width: 70px; height: 70px; flex-shrink: 0; }
+    .donut-legend { display: flex; flex-direction: column; gap: 8px; }
+    .legend-item { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--text-secondary); }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    #contact { background: var(--bg-1); }
+    .contact-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr;
+      max-width: 640px;
+      margin: 0 auto;
+      gap: 32px;
+      align-items: center;
+    }
+    .contact-headline {
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .contact-sub {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition), transform var(--transition);
+      color: var(--text-primary);
+    }
+    .contact-link:hover { border-color: var(--border-hover); transform: translateX(4px); }
+    .contact-link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .contact-link-body { flex: 1; }
+    .contact-link-label { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+    .contact-link-value { font-size: 14px; font-weight: 600; margin-top: 1px; }
+    .contact-link-arrow { color: var(--text-muted); transition: transform var(--transition); }
+    .contact-link:hover .contact-link-arrow { transform: translateX(3px); color: var(--text-secondary); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      background: var(--bg-0);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-copy { font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); transition: color var(--transition); }
+    .footer-links a:hover { color: var(--text-secondary); }
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .project-card.featured { grid-column: span 2; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-avatar { max-width: 240px; }
+      .skills-layout { grid-template-columns: 1fr; }
+      .skills-categories { position: static; flex-direction: row; flex-wrap: wrap; }
+      .stats-body { grid-template-columns: repeat(2, 1fr); }
+      .stats-chart-row { grid-template-columns: 1fr; }
+      .modal-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .section { padding: 64px 0; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: span 1; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-menu-btn { display: flex; }
+      .hero-stats { gap: 24px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .stats-body { grid-template-columns: 1fr 1fr; }
+      .modal-stats { grid-template-columns: repeat(3, 1fr); }
+      .contact-card { padding: 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo" aria-label="Home">
+    </a>
+    <div class="nav-links" role="list">
+      <a href="#about" role="listitem">About</a>
+      <a href="#projects" role="listitem">Projects</a>
+      <a href="#showcase" role="listitem">Play</a>
+      <a href="#skills" role="listitem">Skills</a>
+      <a href="#journey" role="listitem">Journey</a>
+      <a href="#contact" class="nav-cta">Hire Me</a>
+    </div>
+    <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#projects" onclick="closeMobileNav()">Projects</a>
+  <a href="#showcase" onclick="closeMobileNav()">Play</a>
+  <a href="#skills" onclick="closeMobileNav()">Skills</a>
+  <a href="#journey" onclick="closeMobileNav()">Journey</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<section id="hero" aria-label="Introduction">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-content">
+
+      <h1 class="hero-name">Radin<br><span>Build Your Dream Games.</span></h1>
+      <p class="hero-title">Roblox Developer and Game Designer</p>
+      <p class="hero-desc">
+        I make immersive Roblox games that players actually want to play  from hard gameplay loops to incredible looking GUIs.
+      </p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn-primary">
+          View Projects
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn-secondary">
+          Contact Me
+        </a>
+      </div>
+      <!--<div class="hero-stats" role="region" aria-label="Key statistics">
+        <div>
+          <div class="hero-stat-value" id="stat-visits">0</div>
+          <div class="hero-stat-label">Total Visits</div>
+        </div>
+        <div>
+          <div class="hero-stat-value" id="stat-games">0</div>
+          <div class="hero-stat-label">Games Shipped</div>
+        </div>
+        <div>
+          <div class="hero-stat-value" id="stat-years">0</div>
+          <div class="hero-stat-label">Years Building</div>
+        </div>
+        <div>
+          <div class="hero-stat-value" id="stat-players">0</div>
+          <div class="hero-stat-label">Peak Concurrent</div>
+        </div>
+      </div>-->
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section" aria-label="About me">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-avatar-wrap reveal">
+        <div class="about-avatar" role="img" aria-label="Developer avatar">
+          <div class="about-avatar-placeholder" aria-hidden="true">🎮</div>
+        </div>
+        <div class="about-badge" aria-hidden="true">
+          <div class="about-badge-icon">⭐</div>
+          <div>
+            <div class="about-badge-value">4.8</div>
+            <div class="about-badge-text">Client rating<br>from 23+ projects</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-body reveal">
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Developer, designer, and Roblox Player.</h2>
+        <p class="about-desc">
+          Ive been building on Roblox since 2021. long enough to know what makes a game actually good, and not just technically functional.
+        </p>
+        <p class="about-desc">
+          I work with all kinds of developers and studios to take games from  their concepts to launch.
+        </p>
+        <div class="about-specialties" role="list" aria-label="Specialties">
+          <span class="specialty-tag" role="listitem">Luau Scripting</span>
+          <span class="specialty-tag" role="listitem">Game Systems</span>
+          <span class="specialty-tag" role="listitem">UI/UX Design</span>
+          <span class="specialty-tag" role="listitem">Bug Fixing</span>
+          <span class="specialty-tag" role="listitem">Multiplayer</span>
+          <span class="specialty-tag" role="listitem">DataStore</span>
+          <span class="specialty-tag" role="listitem">Monetization</span>
+          <span class="specialty-tag" role="listitem">Map Building</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section" aria-label="Featured projects">
+  <div class="container">
+    <div class="projects-intro reveal">
+      <div>
+        <p class="section-label">Featured Projects</p>
+        <h2 class="section-title">Games Ive been in. (personal projects only not commisions)</h2>
+        <p class="section-subtitle">Click any card to explore the full case.</p>
+      </div>
+    </div>
+
+    <div class="projects-grid" role="list" aria-label="Project cards">
+
+      <article class="project-card featured reveal" role="listitem" tabindex="0"
+        data-project="0" aria-label="Open Raise a pet case">
+        <div class="project-thumb">
+          <div class="project-thumb-overlay" aria-hidden="true"></div>
+          <div class="project-phase-tabs" aria-hidden="true">
+            <span class="phase-tab active">Concept</span>
+            <span class="phase-tab">Build</span>
+            <span class="phase-tab">Launch</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">Grow a Garden Style</span>
+            <span class="project-tag">Multiplayer</span>
+            <span class="project-tag">Monetized</span>
+          </div>
+          <h3 class="project-name">Raise a Pet</h3>
+          <p class="project-desc">a grow a garden style game about raising a pet. easy gameplay loops and it was easy to complete</p>
+          <div class="project-meta">
+            <div class="project-metric">
+              <div class="project-metric-value">Unreleased For now</div>
+              <div class="project-metric-label">Visits</div>
+            </div>
+            <div class="project-metric">
+              <div class="project-metric-value">Unreleased For now</div>
+              <div class="project-metric-label">Peak CCU</div>
+            </div>
+            <div class="project-metric">
+              <div class="project-metric-value">4/5</div>
+              <div class="project-metric-label">Personal Rating</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-expand-btn" aria-hidden="true">↗</div>
+      </article>
+
+      <article class="project-card reveal" role="listitem" tabindex="0"
+        data-project="1" aria-label="Open Dive case">
+        <div class="project-thumb">
+          <div class="project-thumb-inner" aria-hidden="true"></div>
+          <div class="project-thumb-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">UnderWater</span>
+            <span class="project-tag">Fishing</span>
+          </div>
+          <h3 class="project-name">Dive</h3>
+          <p class="project-desc">game about fishing. but its much more (deeper) than that. you can either use fishing rods to fish from the surface, or dive underwater and take rarer fish with spears, however the deeper you go, the more dangerous it gets.</p>
+          <div class="project-meta">
+            <div class="project-metric">
+              <div class="project-metric-value">Working on it right now</div>
+              <div class="project-metric-label">Visits</div>
+            </div>
+            <div class="project-metric">
+              <div class="project-metric-value">5/5</div>
+              <div class="project-metric-label">Personal Rating</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-expand-btn" aria-hidden="true">↗</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="project-modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
+  <div class="project-modal">
+    <div class="modal-thumb" id="modal-thumb" aria-hidden="true">
+      <button class="modal-close" id="modal-close" aria-label="Close case study">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="project-tags" id="modal-tags"></div>
+      <h3 class="project-name" id="modal-project-title" style="font-size:22px;margin-bottom:8px;letter-spacing:-0.03em;"></h3>
+      <p class="project-desc" id="modal-desc" style="margin-bottom:20px;"></p>
+      <div class="modal-phases" id="modal-phases" role="tablist" aria-label="Development phases"></div>
+      <div class="modal-phase-content" id="modal-phase-content" role="tabpanel"></div>
+      <div class="modal-stats" id="modal-stats"></div>
+    </div>
+  </div>
+</div>
+
+<section id="showcase" class="section" aria-label="Play my games">
+  <div class="container">
+    <div class="showcase-card reveal">
+      <div class="showcase-icon" aria-hidden="true">🎮</div>
+      <div class="showcase-body">
+        <p class="section-label">Play My Games</p>
+        <h2 class="section-title" style="margin-bottom:12px;">See everything in person.</h2>
+        <p class="section-subtitle" style="margin-bottom:28px; max-width:none;">
+          Ive collected all my released work into one Roblox hub, so instead of just reading about it you can actually go play it for yourself.
+        </p>
+        <a href="https://www.roblox.com/games/9269971411/Portfolio" class="btn-primary" target="_blank" rel="noopener noreferrer">
+          Open Portfolio Game on Roblox
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="section" aria-label="Skills">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:48px;">
+      <p class="section-label">Skills</p>
+      <h2 class="section-title">What I work with.</h2>
+      <p class="section-subtitle">Select a category to explore tools and proficiency levels.</p>
+    </div>
+    <div class="skills-layout reveal">
+      <nav class="skills-categories" role="tablist" aria-label="Skill categories">
+        <button class="skill-cat-btn active" role="tab" aria-selected="true" aria-controls="skills-panel" data-cat="scripting">
+          <span class="skill-cat-icon" aria-hidden="true"></span> Scripting
+        </button>
+        <button class="skill-cat-btn" role="tab" aria-selected="false" aria-controls="skills-panel" data-cat="design">
+          <span class="skill-cat-icon" aria-hidden="true"></span> Design
+        </button>
+        <button class="skill-cat-btn" role="tab" aria-selected="false" aria-controls="skills-panel" data-cat="systems">
+          <span class="skill-cat-icon" aria-hidden="true"></span> Systems
+        </button>
+        <button class="skill-cat-btn" role="tab" aria-selected="false" aria-controls="skills-panel" data-cat="tools">
+          <span class="skill-cat-icon" aria-hidden="true"></span> Tools
+        </button>
+      </nav>
+      <div class="skills-panel" id="skills-panel" role="tabpanel">
+        <div class="skills-panel-title" id="skills-panel-title">
+          <span aria-hidden="true"></span> Scripting & Programming
+        </div>
+        <div class="skills-grid" id="skills-grid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="journey" class="section" aria-label="Development journey">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Journey</p>
+      <h2 class="section-title">How I got here.</h2>
+      <p class="section-subtitle">A timeline of growth milestones drag to explore.</p>
+    </div>
+    <div class="timeline-container reveal" id="timeline-container" role="region" aria-label="Draggable timeline">
+      <div class="timeline-inner" id="timeline-inner">
+        <div class="timeline-line" id="timeline-line" aria-hidden="true">
+          <div class="timeline-progress" id="timeline-progress"></div>
+        </div>
+      </div>
+    </div>
+    <p class="timeline-hint" aria-hidden="true"> drag to explore →</p>
+  </div>
+</section>
+
+<section id="stats" class="section" aria-label="Development statistics">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:40px;">
+      <p class="section-label">Analytics</p>
+      <h2 class="section-title">By the numbers.</h2>
+    </div>
+    <div class="stats-dashboard reveal" role="region" aria-label="Statistics dashboard">
+      <div class="stats-header">
+        <div class="stats-header-left">
+          <div class="stats-header-dots" aria-hidden="true">
+            <div class="stats-dot dot-red"></div>
+            <div class="stats-dot dot-yellow"></div>
+            <div class="stats-dot dot-green"></div>
+          </div>
+          <span class="stats-title">dev_dashboard.lua Portfolio Metrics</span>
+        </div>
+      </div>
+      <div class="stats-body">
+        <div class="stat-block">
+          <div class="stat-block-label">Total Visits</div>
+          <div class="stat-block-value" style="color: var(--accent);">44.8M</div>
+          <div class="stat-block-change change-up">↑ +2.1M this month</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-block-label">Peak CCU</div>
+          <div class="stat-block-value" style="color: var(--green);">9,100</div>
+          <div class="stat-block-change change-up">↑ Personal record</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-block-label">Games Shipped</div>
+          <div class="stat-block-value" style="color: var(--text-primary);">14</div>
+          <div class="stat-block-change change-neutral">solo + commissioned</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-block-label">Avg. Rating</div>
+          <div class="stat-block-value" style="color: var(--amber);">4.7★</div>
+          <div class="stat-block-change change-up">↑ Across all games</div>
+        </div>
+      </div>
+      <div class="stats-chart-row">
+        <div class="mini-chart">
+          <div class="mini-chart-title">Monthly Visits (K) — Last 6 Months</div>
+          <div class="bar-chart" role="img" aria-label="Monthly visits bar chart">
+            <div class="bar-col">
+              <div class="bar" style="height:36px;background:var(--accent);opacity:0.5;"></div>
+              <div class="bar-col-label">Jan</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:44px;background:var(--accent);opacity:0.6;"></div>
+              <div class="bar-col-label">Feb</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:38px;background:var(--accent);opacity:0.65;"></div>
+              <div class="bar-col-label">Mar</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:54px;background:var(--accent);opacity:0.75;"></div>
+              <div class="bar-col-label">Apr</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:48px;background:var(--accent);opacity:0.85;"></div>
+              <div class="bar-col-label">May</div>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:60px;background:var(--accent);"></div>
+              <div class="bar-col-label">Jun</div>
+            </div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="mini-chart-title">Game Genre Mix</div>
+          <div class="donut-wrap">
+            <svg class="donut" viewBox="0 0 36 36" role="img" aria-label="Genre distribution donut chart">
+              <circle cx="18" cy="18" r="14" fill="none" stroke="var(--bg-0)" stroke-width="6"/>
+              <circle cx="18" cy="18" r="14" fill="none" stroke="#4f8ef7" stroke-width="6"
+                stroke-dasharray="30.8 57.1" stroke-dashoffset="0" transform="rotate(-90 18 18)"/>
+              <circle cx="18" cy="18" r="14" fill="none" stroke="#3ecf8e" stroke-width="6"
+                stroke-dasharray="24.6 63.3" stroke-dashoffset="-30.8" transform="rotate(-90 18 18)"/>
+              <circle cx="18" cy="18" r="14" fill="none" stroke="#f5a623" stroke-width="6"
+                stroke-dasharray="17.6 70.3" stroke-dashoffset="-55.4" transform="rotate(-90 18 18)"/>
+              <circle cx="18" cy="18" r="14" fill="none" stroke="#a78bfa" stroke-width="6"
+                stroke-dasharray="14.9 73" stroke-dashoffset="-73" transform="rotate(-90 18 18)"/>
+            </svg>
+            <div class="donut-legend" role="list">
+              <div class="legend-item" role="listitem"><div class="legend-dot" style="background:#4f8ef7"></div>Tycoon</div>
+              <div class="legend-item" role="listitem"><div class="legend-dot" style="background:#3ecf8e"></div>RPG</div>
+              <div class="legend-item" role="listitem"><div class="legend-dot" style="background:#f5a623"></div>Racing</div>
+              <div class="legend-item" role="listitem"><div class="legend-dot" style="background:#a78bfa"></div>Other</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section" aria-label="Contact">
+  <div class="container">
+    <div class="contact-card reveal">
+      <div>
+        <p class="section-label">Contact</p>
+        <h2 class="contact-headline">Lets build something worth playing.</h2>
+        <p class="contact-sub">
+          Open to commissions, studio roles, and collaborations. Response time is usually under 24 hours.
+        </p>
+        <div class="contact-links" role="list">
+          <a href="https://discord.com" class="contact-link" role="listitem" target="_blank" rel="noopener noreferrer">
+            <div class="contact-link-icon" style="background:rgba(88,101,242,0.15);" aria-hidden="true">💬</div>
+            <div class="contact-link-body">
+              <div class="contact-link-label">Discord</div>
+              <div class="contact-link-value">radin5562</div>
+            </div>
+            <span class="contact-link-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="radinrahmati@gmail.com" class="contact-link" role="listitem">
+            <div class="contact-link-icon" style="background:rgba(79,142,247,0.12);" aria-hidden="true">✉️</div>
+            <div class="contact-link-body">
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value">radinrahmati@gmail.com</div>
+            </div>
+            <span class="contact-link-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="https://www.roblox.com/users/3441561890/profile" class="contact-link" role="listitem" target="_blank" rel="noopener noreferrer">
+            <div class="contact-link-icon" style="background:rgba(255,0,0,0.08);" aria-hidden="true">🎮</div>
+            <div class="contact-link-body">
+              <div class="contact-link-label">Roblox Profile</div>
+              <div class="contact-link-value">radin5562 on Roblox</div>
+            </div>
+            <span class="contact-link-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="https://x.com/radin5562" class="contact-link" role="listitem" target="_blank" rel="noopener noreferrer">
+            <div class="contact-link-icon" style="background:rgba(29,161,242,0.1);" aria-hidden="true">𝕏</div>
+            <div class="contact-link-body">
+              <div class="contact-link-label">X</div>
+              <div class="contact-link-value">@radin5562</div>
+            </div>
+            <span class="contact-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-copy">© 2025 Radin</span>
+      <div class="footer-links" role="list">
+        <a href="#hero" role="listitem">Back to top ↑</a>
+        <a href="#projects" role="listitem">Projects</a>
+        <a href="#contact" role="listitem">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const PROJECTS = [
+    {
+      emoji: '', title: 'Raise A pet',
+      tags: ['Grow A Garden Style', 'Multiplayer', 'Monetized'],
+      desc: 'simple grow a garden type game about buying pet eggs, hathching them and then you could either sell them or use them for boosts.',
+      phases: {
+        Concept: 'i was doing my normal work until i saw my friends in studio, i asked them what they were doing and they put me into development. i was not present at the planning',
+        Build: 'harder than i tought, it was my first time making a game like that so i spent a week making the hatching system. but after around a month the game was alright',
+        Scripting: 'we were a team of 3, 2 of us were scripters, i got most of the work but still it was fine for me. after all i do make systems faster than others.',
+      },
+      stats: [
+        { value: 'Team', label: '3' },
+        { value: 'Time', label: '1 Month' },
+        { value: 'Difficulty', label: 'Easy' }
+      ]
+    },
+    {
+      emoji: '', title: 'Dive',
+      tags: ['Underwater', 'Fishing', 'Procedural'],
+      desc: 'dive underwater and catch fish, or catch them from the surface',
+      phases: {
+        Concept: 'The idea came from wanting funds for my dream game, a open world rpg. so we decided to make a smaller game and use its money to hire developers for our bigger game. i really like the game fisch, its relaxing and its just diffrent than most of the games currently that are all brainrot slop. so we decided to make a underwater fishing system',
+        Build: 'Ocean generation uses a chunk set. spawning wherever the player moves. Leaderboard is backed by OrderedDataStore with anti-cheat validation on the server.',
+        Scripting: 'its our same team of 3, me and my 2 friends. the other scripter didnt want to use roblox datastoers. so i rewrote the ENTIRE DATABASE SYSTEM from scratch. and now the games database system is handled by it. (might make it open-source in the future who knows). im working on the game right now aswell.',
+      },
+      stats: [
+        { value: 'Team', label: '3' },
+        { value: 'Time', label: '2 Months still working on it' },
+        { value: 'Difficulty', label: 'Hard' }
+      ]
+    },
+  ];
+
+  const SKILLS_DATA = {
+    scripting: {
+      title: 'Scripting and Programming',
+      items: [
+        { name: 'Luau', icon: '', level: 'Expert', pct: 95 },
+        { name: 'Html (website built with it)', icon: '', level: 'Expert', pct: 90 },
+        { name: 'JavaScript (website build with it)', icon: '', level: 'Advanced', pct: 70 },
+        { name: 'Python', icon: '', level: 'Expert', pct: 100 },
+      ]
+    },
+    design: {
+      title: 'Design and Visual',
+      items: [
+        { name: 'Roblox Studio UI', icon: '', level: 'Expert', pct: 95 },
+        { name: 'Blender (low-poly)', icon: '', level: 'Intermediate', pct: 72 },
+        { name: 'Animation', icon: '', level: 'Advanced', pct: 80 },
+      ]
+    },
+    systems: {
+      title: 'Game Systems',
+      items: [
+        { name: 'DataStore', icon: '', level: 'Expert', pct: 100 },
+        { name: 'Anti-cheat', icon: '', level: 'Advanced', pct: 76 },
+        { name: 'Procedural Gen', icon: '', level: 'Expert', pct: 100 },
+        { name: 'AI/NPC Behavior', icon: '', level: 'Expert', pct: 93 },
+      ]
+    },
+    tools: {
+      title: 'Tools & Workflow',
+      items: [
+        { name: 'Git / GitHub', icon: '', level: 'Advanced', pct: 80 },
+        { name: 'Roblox Studio', icon: '', level: 'Expert', pct: 97 },
+        { name: 'VS Code', icon: '', level: 'Expert', pct: 100 },
+      ]
+    }
+  };
+
+  const TIMELINE_DATA = [
+    { year: '2021', milestone: 'Started learning', detail: 'Started learning using free models and reading their scripts' },
+    { year: '2022', milestone: 'Made a simple game', detail: 'i just made a simple simulator about jumping from buildings and the higher you jump the more points you get. turned out really good. but never released it' },
+    { year: '2023', milestone: 'First Commisions', detail: 'i started taking my first commisions, but since i didnt have a portfolio couldnt get much. at the end of the year i got peak 30K robux' },
+    { year: '2024', milestone: 'Made a portfolio', detail: 'i started making my first portfolio. i put all my work there in hopes of getting more commisions' },
+    { year: '2025', milestone: 'The Peak', detail: 'the portfolio worked! i worked with many people on many commisions and earned a total of 200K robux at the end of the year' },
+    { year: '2026', milestone: 'The Fall', detail: 'i live in iran, on january the internet was cut off for most of the month, that alone made me lose my momentum, then we had a 3 month war, internet cut off for all of the 3 months. then my pc had a problem and i had to completely reset it. i lost my portfolio and all my works. now i am making this new portfolio in hopes of getting back what i lost. currently earned : 0 robux this year'}
+  ];
+
+  const mainNav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    mainNav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  const menuBtn = document.getElementById('nav-menu-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  menuBtn.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  function closeMobileNav() {
+    mobileNav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  function animateCount(el, target, suffix = '', duration = 1600) {
+    const start = performance.now();
+    function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      const val = Math.floor(ease * target);
+      el.textContent = val >= 1000 ? (val / 1000).toFixed(1) + 'K' + suffix : val + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target >= 1000 ? (target / 1000).toFixed(1) + 'K' + suffix : target + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  let countersStarted = false;
+  function maybeStartCounters() {
+    if (countersStarted) return;
+    const hero = document.getElementById('hero');
+    const rect = hero.getBoundingClientRect();
+    if (rect.bottom > 0) {
+      countersStarted = true;
+      setTimeout(() => {
+        animateCount(document.getElementById('stat-visits'), 44800);
+        animateCount(document.getElementById('stat-games'), 14);
+        animateCount(document.getElementById('stat-years'), 9);
+        animateCount(document.getElementById('stat-players'), 9100);
+      }, 300);
+    }
+  }
+  window.addEventListener('scroll', maybeStartCounters, { passive: true });
+  maybeStartCounters();
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  const modalOverlay = document.getElementById('project-modal');
+  const modalClose = document.getElementById('modal-close');
+  let activePhaseIndex = 0;
+  let currentProject = null;
+
+  function openProject(idx) {
+    const p = PROJECTS[idx];
+    currentProject = p;
+    activePhaseIndex = 0;
+    document.getElementById('modal-thumb').querySelector('.modal-close') || '';
+    document.getElementById('modal-thumb').style.fontSize = '80px';
+    document.getElementById('modal-thumb').setAttribute('aria-label', p.title + ' thumbnail');
+
+    const existingEmoji = document.getElementById('modal-emoji');
+    if (existingEmoji) existingEmoji.remove();
+    const emojiEl = document.createElement('div');
+    emojiEl.id = 'modal-emoji';
+    emojiEl.textContent = p.emoji;
+    emojiEl.style.cssText = 'font-size:72px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);';
+    emojiEl.setAttribute('aria-hidden', 'true');
+    document.getElementById('modal-thumb').appendChild(emojiEl);
+
+    document.getElementById('modal-project-title').textContent = p.title;
+    document.getElementById('modal-desc').textContent = p.desc;
+
+    const tagsEl = document.getElementById('modal-tags');
+    tagsEl.innerHTML = p.tags.map(t => `<span class="project-tag">${t}</span>`).join('');
+
+    const phaseKeys = Object.keys(p.phases);
+    const phasesEl = document.getElementById('modal-phases');
+    phasesEl.innerHTML = phaseKeys.map((k, i) =>
+      `<button class="modal-phase-btn${i === 0 ? ' active' : ''}"
+        role="tab" aria-selected="${i === 0}"
+        data-phase="${k}" onclick="selectPhase('${k}', this)">${k}</button>`
+    ).join('');
+
+    document.getElementById('modal-phase-content').textContent = p.phases[phaseKeys[0]];
+
+    const statsEl = document.getElementById('modal-stats');
+    statsEl.innerHTML = p.stats.map(s =>
+      `<div class="modal-stat"><div class="modal-stat-value">${s.value}</div><div class="modal-stat-label">${s.label}</div></div>`
+    ).join('');
+
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modalClose.focus();
+  }
+
+  function selectPhase(key, btn) {
+    document.querySelectorAll('.modal-phase-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    document.getElementById('modal-phase-content').textContent = currentProject.phases[key];
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    const idx = parseInt(card.dataset.project);
+    card.addEventListener('click', () => openProject(idx));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(idx); }
+    });
+  });
+
+  function renderSkills(cat) {
+    const data = SKILLS_DATA[cat];
+    document.getElementById('skills-panel-title').textContent = data.title;
+    const grid = document.getElementById('skills-grid');
+    grid.innerHTML = data.items.map(s => {
+      const levelClass = s.level === 'Expert' ? 'level-expert' : s.level === 'Advanced' ? 'level-advanced' : 'level-intermediate';
+      const fillClass = s.level === 'Expert' ? 'fill-expert' : s.level === 'Advanced' ? 'fill-advanced' : 'fill-intermediate';
+      return `
+        <div class="skill-item">
+          <div class="skill-item-header">
+            <div class="skill-item-name"><span class="skill-item-icon" aria-hidden="true">${s.icon}</span>${s.name}</div>
+            <span class="skill-level-tag ${levelClass}">${s.level}</span>
+          </div>
+          <div class="skill-bar-track" role="progressbar" aria-valuenow="${s.pct}" aria-valuemin="0" aria-valuemax="100" aria-label="${s.name} proficiency">
+            <div class="skill-bar-fill ${fillClass}" data-pct="${s.pct}"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    requestAnimationFrame(() => {
+      grid.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.style.width = '0';
+        requestAnimationFrame(() => {
+          setTimeout(() => { bar.style.width = bar.dataset.pct + '%'; }, 50);
+        });
+      });
+    });
+  }
+
+  document.querySelectorAll('.skill-cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.skill-cat-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      renderSkills(btn.dataset.cat);
+    });
+  });
+
+  const skillsSection = document.getElementById('skills');
+  let skillsRendered = false;
+  new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !skillsRendered) {
+      skillsRendered = true;
+      renderSkills('scripting');
+    }
+  }, { threshold: 0.1 }).observe(skillsSection);
+
+  function buildTimeline() {
+    const inner = document.getElementById('timeline-inner');
+    TIMELINE_DATA.forEach((item, i) => {
+      const el = document.createElement('div');
+      el.className = 'timeline-item' + (i === 0 ? ' active' : '');
+      el.innerHTML = `
+        <div class="timeline-dot-wrap">
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-year">${item.year}</div>
+          <div class="timeline-milestone">${item.milestone}</div>
+          <div class="timeline-detail">${item.detail}</div>
+        </div>
+      `;
+      inner.appendChild(el);
+    });
+  }
+  buildTimeline();
+
+  const timelineContainer = document.getElementById('timeline-container');
+  const timelineInner = document.getElementById('timeline-inner');
+  let isDragging = false, startX = 0, scrollLeft = 0;
+
+  timelineContainer.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX - timelineContainer.offsetLeft;
+    scrollLeft = timelineContainer.scrollLeft;
+  });
+  timelineContainer.addEventListener('mouseleave', () => { isDragging = false; });
+  timelineContainer.addEventListener('mouseup', () => { isDragging = false; });
+  timelineContainer.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - timelineContainer.offsetLeft;
+    timelineContainer.scrollLeft = scrollLeft - (x - startX);
+    updateTimelineProgress();
+  });
+
+  let touchStartX = 0;
+  timelineContainer.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].pageX;
+    scrollLeft = timelineContainer.scrollLeft;
+  }, { passive: true });
+  timelineContainer.addEventListener('touchmove', (e) => {
+    const diff = touchStartX - e.touches[0].pageX;
+    timelineContainer.scrollLeft = scrollLeft + diff;
+    updateTimelineProgress();
+  }, { passive: true });
+
+  function updateTimelineProgress() {
+    const maxScroll = timelineContainer.scrollWidth - timelineContainer.clientWidth;
+    const pct = maxScroll > 0 ? (timelineContainer.scrollLeft / maxScroll) * 100 : 0;
+    document.getElementById('timeline-progress').style.width = pct + '%';
+
+    const items = timelineInner.querySelectorAll('.timeline-item');
+    const containerRect = timelineContainer.getBoundingClientRect();
+    let closest = null, closestDist = Infinity;
+    items.forEach(item => {
+      const r = item.getBoundingClientRect();
+      const dist = Math.abs(r.left + r.width / 2 - (containerRect.left + containerRect.width / 2));
+      if (dist < closestDist) { closestDist = dist; closest = item; }
+    });
+    items.forEach(i => i.classList.remove('active'));
+    if (closest) closest.classList.add('active');
+  }
+</script>
+</body>
+</html>
