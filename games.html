@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Games — Radin Dev Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-0: #0c0d0f;
+      --bg-2: #181b1f;
+      --bg-3: #1e2227;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.14);
+      --text-primary: #f0f1f3;
+      --text-secondary: #8b909a;
+      --text-muted: #52575f;
+      --accent: #4f8ef7;
+      --accent-dim: rgba(79,142,247,0.12);
+      --green: #3ecf8e;
+      --amber: #f5a623;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg-0); color: var(--text-primary); font-family: var(--font-display); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-0); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-3); border-radius: 0; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; transition: background var(--transition), backdrop-filter var(--transition); }
+    nav.scrolled { background: rgba(12,13,15,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-inner { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-left { display: flex; align-items: center; gap: 14px; }
+    .nav-mode-btn { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; transition: border-color var(--transition), color var(--transition), background var(--transition); white-space: nowrap; cursor: pointer; }
+    .nav-mode-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .nav-logo { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--text-secondary); transition: color var(--transition); }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+    .nav-cta { font-size: 13px; font-weight: 600; color: var(--accent); border: 1px solid rgba(79,142,247,0.35); padding: 7px 18px; border-radius: 6px; transition: background var(--transition), border-color var(--transition); }
+    .nav-cta:hover { background: var(--accent-dim); border-color: var(--accent); }
+    .nav-menu-btn { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+    .nav-menu-btn span { display: block; width: 22px; height: 1.5px; background: var(--text-secondary); border-radius: 2px; }
+    .mobile-nav { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(12,13,15,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 24px; flex-direction: column; gap: 14px; z-index: 99; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 16px; font-weight: 500; color: var(--text-secondary); padding: 8px 0; border-bottom: 1px solid var(--border); }
+    @media (max-width: 640px) { .nav-links { display: none; } .nav-cta { display: none; } .nav-menu-btn { display: flex; } }
+
+    /* Page Header */
+    .page-header { padding: 120px 0 60px; background: var(--bg-0); }
+    .section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+    .section-subtitle { font-size: 15px; color: var(--text-secondary); line-height: 1.7; max-width: 520px; }
+
+    /* Controls */
+    .controls-bar { padding: 28px 0; background: var(--bg-0); border-bottom: 1px solid var(--border); position: sticky; top: 60px; z-index: 50; backdrop-filter: blur(12px); }
+    .controls-inner { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .search-wrap { position: relative; flex: 1; min-width: 220px; }
+    .search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+    .search-input { width: 100%; background: var(--bg-2); border: 1px solid var(--border); color: var(--text-primary); font-family: var(--font-display); font-size: 14px; padding: 11px 14px 11px 42px; outline: none; transition: border-color var(--transition); }
+    .search-input::placeholder { color: var(--text-muted); }
+    .search-input:focus { border-color: var(--accent); }
+    .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-btn { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--border); color: var(--text-secondary); background: var(--bg-2); border-radius: 0; cursor: pointer; transition: all var(--transition); }
+    .filter-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+    .filter-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .results-count { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); margin-left: auto; white-space: nowrap; }
+
+    /* Games Grid */
+    .games-section { padding: 40px 0 80px; background: var(--bg-0); }
+    .games-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    @media (max-width: 700px) { .games-grid { grid-template-columns: 1fr; } }
+
+    .game-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 0; overflow: hidden; transition: border-color var(--transition), transform var(--transition); }
+    .game-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+    .game-card.hidden { display: none; }
+    .game-thumb { aspect-ratio: 16/9; background: var(--bg-3); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .game-thumb-emoji { font-size: 72px; }
+    .game-thumb-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .game-card:hover .game-thumb-img { transform: scale(1.04); }
+    .game-thumb-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,13,15,0.6) 0%, transparent 55%); }
+    .game-status-badge { position: absolute; top: 12px; left: 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 10px; border-radius: 4px; font-weight: 700; }
+    .status-live { background: rgba(62,207,142,0.2); color: var(--green); border: 1px solid rgba(62,207,142,0.35); }
+    .status-dev { background: rgba(79,142,247,0.18); color: var(--accent); border: 1px solid rgba(79,142,247,0.3); }
+    .status-soon { background: rgba(245,166,35,0.18); color: var(--amber); border: 1px solid rgba(245,166,35,0.3); }
+    .price-badge { position: absolute; top: 12px; right: 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 10px; border-radius: 4px; font-weight: 700; }
+    .pbadge-free { background: rgba(62,207,142,0.2); color: var(--green); border: 1px solid rgba(62,207,142,0.35); }
+    .pbadge-paid { background: rgba(245,166,35,0.18); color: var(--amber); border: 1px solid rgba(245,166,35,0.3); }
+    .game-body { padding: 22px; }
+    .game-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .game-tag { font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); background: var(--accent-dim); border-radius: 4px; padding: 3px 7px; }
+    .game-name { font-size: 20px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .game-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 18px; }
+    .game-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 16px; border-top: 1px solid var(--border); margin-bottom: 18px; }
+    .game-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .game-meta-value { font-size: 13px; font-weight: 700; font-family: var(--font-mono); color: var(--green); }
+    .game-meta-label { font-size: 10px; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; }
+    .game-actions { display: flex; gap: 10px; }
+    .game-btn { flex: 1; text-align: center; font-size: 13px; font-weight: 600; padding: 11px 18px; border-radius: 7px; cursor: pointer; transition: opacity var(--transition), transform var(--transition); font-family: var(--font-display); border: none; }
+    .game-btn-play { background: var(--accent); color: #fff; }
+    .game-btn-play:hover { opacity: 0.88; transform: translateY(-1px); }
+    .game-btn-buy { background: rgba(245,166,35,0.18); color: var(--amber); border: 1px solid rgba(245,166,35,0.3); }
+    .game-btn-buy:hover { opacity: 0.8; transform: translateY(-1px); }
+    .game-btn-soon { background: var(--bg-3); color: var(--text-muted); cursor: not-allowed; border: 1px solid var(--border); }
+
+    /* Modal */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(8,9,11,0.92); backdrop-filter: blur(12px); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box { background: var(--bg-2); border: 1px solid var(--border); border-radius: 0; max-width: 500px; width: 100%; padding: 32px; transform: scale(0.96) translateY(12px); transition: transform 0.25s cubic-bezier(0.4,0,0.2,1); position: relative; }
+    .modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
+    .modal-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: var(--bg-3); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-secondary); font-size: 14px; transition: color var(--transition); }
+    .modal-close:hover { color: var(--text-primary); }
+    .modal-title { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .modal-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 20px; }
+    .modal-steps { list-style: none; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .modal-steps li { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .modal-steps li strong { color: var(--text-primary); }
+    .modal-steps li a { color: var(--accent); text-decoration: underline; }
+    .modal-cta-btn { display: block; width: 100%; text-align: center; background: var(--amber); color: #0c0d0f; font-size: 14px; font-weight: 700; padding: 13px 24px; border-radius: 8px; cursor: pointer; transition: opacity var(--transition); border: none; font-family: var(--font-display); }
+    .modal-cta-btn:hover { opacity: 0.88; }
+
+    .empty-state { padding: 80px 0; text-align: center; color: var(--text-muted); font-family: var(--font-mono); font-size: 13px; display: none; }
+    .empty-state.visible { display: block; }
+
+    footer { border-top: 1px solid var(--border); padding: 24px 0; background: var(--bg-0); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); transition: color var(--transition); }
+    .footer-links a:hover { color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a href="studio.html" class="nav-mode-btn">Studio</a>
+      <a href="index.html" class="nav-logo">Radin</a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="assets.html">Assets</a>
+      <a href="games.html" class="active">Games</a>
+      <a href="index.html#showcase">Play</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#contact" class="nav-cta">Hire Me</a>
+    </div>
+    <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="studio.html" onclick="closeMobileNav()">Studio Mode</a>
+  <a href="index.html#about" onclick="closeMobileNav()">About</a>
+  <a href="index.html#projects" onclick="closeMobileNav()">Projects</a>
+  <a href="assets.html" onclick="closeMobileNav()">Assets</a>
+  <a href="games.html" onclick="closeMobileNav()">Games</a>
+  <a href="index.html#showcase" onclick="closeMobileNav()">Play</a>
+  <a href="index.html#skills" onclick="closeMobileNav()">Skills</a>
+  <a href="index.html#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<div class="page-header">
+  <div class="container">
+    <p class="section-label">Games</p>
+    <h1 class="section-title">Playable Games</h1>
+    <p class="section-subtitle">Free games to play directly — paid games require a gamepass purchase in the Portfolio hub, then message me your username to receive access.</p>
+  </div>
+</div>
+
+<div class="controls-bar">
+  <div class="container">
+    <div class="controls-inner">
+      <div class="search-wrap">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M10 6.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-.7 3.24 2.5 2.5-.7.7-2.5-2.5a4.5 4.5 0 1 1 .7-.7Z" fill="currentColor"/></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search games…" autocomplete="off" />
+      </div>
+      <div class="filter-group" id="filter-group">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="free">Free</button>
+        <button class="filter-btn" data-filter="paid">Paid</button>
+        <button class="filter-btn" data-filter="live">Live</button>
+        <button class="filter-btn" data-filter="dev">In Dev</button>
+      </div>
+      <span class="results-count" id="results-count">0 games</span>
+    </div>
+  </div>
+</div>
+
+<section class="games-section">
+  <div class="container">
+    <div class="games-grid" id="games-grid"></div>
+    <div class="empty-state" id="empty-state">no games match your search.</div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal-overlay" id="game-modal">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-copy">radin · portfolio</span>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="assets.html">Assets</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── Game Data ───────────────────────────────────────────────────────────────
+  // status: 'live' | 'dev' | 'soon'
+  // type: 'free' | 'paid'
+  // For free games, set `playUrl` to the direct Roblox game URL.
+  // For paid games, set `gamestoreUrl` to the Portfolio game store and `gamepassId`.
+  const GAMES = [
+    {
+      id: 'dive',
+      name: 'Dive',
+      emoji: '🌊',
+      tags: ['underwater', 'fishing'],
+      status: 'dev',
+      type: 'free',
+      desc: 'Go fishing from the surface or dive underwater for rarer catches with spears. The deeper you go, the more dangerous it gets. Procedurally generated ocean.',
+      visits: 'In dev',
+      ccu: '—',
+      rating: '5/5',
+      playUrl: 'https://www.roblox.com/games/9269971411/Portfolio',
+    },
+    {
+      id: 'raise-a-pet',
+      name: 'Raise A Pet',
+      emoji: '🐣',
+      tags: ['pet sim', 'multiplayer'],
+      status: 'soon',
+      type: 'free',
+      desc: 'A Grow-a-Garden style game about hatching pet eggs, raising them, and collecting rare species. Chill multiplayer loops with simple progression.',
+      visits: 'Unreleased',
+      ccu: '—',
+      rating: '4/5',
+      playUrl: null,
+    },
+    // ─── Add more games below ────────────────────────────────────────────────
+    // {
+    //   id: 'mygame',
+    //   name: 'My Game',
+    //   emoji: '⚔️',
+    //   tags: ['rpg', 'combat'],
+    //   status: 'live',  // or 'dev' or 'soon'
+    //   type: 'paid',    // or 'free'
+    //   desc: 'Description here.',
+    //   visits: '1.2K',
+    //   ccu: '42',
+    //   rating: '4.5/5',
+    //   playUrl: null, // not needed for paid
+    //   gamestoreUrl: 'https://www.roblox.com/games/9269971411/Portfolio',
+    //   price: '100 R$',
+    // },
+  ];
+
+  const grid = document.getElementById('games-grid');
+
+  function statusLabel(s) {
+    if (s === 'live') return 'Live';
+    if (s === 'dev') return 'In Dev';
+    return 'Coming Soon';
+  }
+  function statusClass(s) {
+    if (s === 'live') return 'status-live';
+    if (s === 'dev') return 'status-dev';
+    return 'status-soon';
+  }
+
+  function renderGame(g) {
+    const card = document.createElement('article');
+    card.className = 'game-card';
+    card.dataset.id = g.id;
+    card.dataset.type = g.type;
+    card.dataset.status = g.status;
+    card.dataset.name = g.name.toLowerCase();
+    card.dataset.tags = g.tags.join(' ');
+
+    const priceBadge = g.type === 'paid' ? `<span class="price-badge pbadge-paid">${g.price || 'Paid'}</span>` : `<span class="price-badge pbadge-free">Free</span>`;
+
+    let actionsHtml = '';
+    if (g.status === 'soon') {
+      actionsHtml = `<button class="game-btn game-btn-soon" disabled>Coming Soon</button>`;
+    } else if (g.type === 'free') {
+      actionsHtml = g.playUrl
+        ? `<a href="${g.playUrl}" target="_blank" rel="noopener noreferrer" style="flex:1"><button class="game-btn game-btn-play" style="width:100%">Play Free</button></a>`
+        : `<button class="game-btn game-btn-soon" disabled>In Development</button>`;
+    } else {
+      actionsHtml = `<button class="game-btn game-btn-buy" data-game-id="${g.id}">Buy Access — ${g.price || '?'}</button>`;
+      if (g.playUrl) actionsHtml = `<a href="${g.playUrl}" target="_blank" rel="noopener noreferrer" style="flex:1"><button class="game-btn game-btn-play" style="width:100%">Play</button></a>` + actionsHtml;
+    }
+
+    card.innerHTML = `
+      <div class="game-thumb">
+        <span class="game-thumb-emoji">${g.emoji}</span>
+        <div class="game-thumb-overlay"></div>
+        <span class="game-status-badge ${statusClass(g.status)}">${statusLabel(g.status)}</span>
+        ${priceBadge}
+      </div>
+      <div class="game-body">
+        <div class="game-tags">${g.tags.map(t=>`<span class="game-tag">${t}</span>`).join('')}</div>
+        <div class="game-name">${g.name}</div>
+        <div class="game-desc">${g.desc}</div>
+        <div class="game-meta">
+          <div class="game-meta-item"><div class="game-meta-value">${g.visits}</div><div class="game-meta-label">Visits</div></div>
+          <div class="game-meta-item"><div class="game-meta-value">${g.ccu}</div><div class="game-meta-label">Peak CCU</div></div>
+          <div class="game-meta-item"><div class="game-meta-value">${g.rating}</div><div class="game-meta-label">Rating</div></div>
+        </div>
+        <div class="game-actions">${actionsHtml}</div>
+      </div>`;
+    return card;
+  }
+
+  GAMES.forEach(g => grid.appendChild(renderGame(g)));
+  updateCount();
+
+  // ─── Search & Filter ─────────────────────────────────────────────────────────
+  let activeFilter = 'all';
+
+  document.getElementById('filter-group').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    applyFilters();
+  });
+  document.getElementById('search-input').addEventListener('input', applyFilters);
+
+  function applyFilters() {
+    const q = document.getElementById('search-input').value.toLowerCase().trim();
+    let visible = 0;
+    document.querySelectorAll('.game-card').forEach(card => {
+      const matchFilter = activeFilter === 'all'
+        || card.dataset.type === activeFilter
+        || card.dataset.status === activeFilter;
+      const matchSearch = !q || card.dataset.name.includes(q) || card.dataset.tags.includes(q) || card.querySelector('.game-desc').textContent.toLowerCase().includes(q);
+      const show = matchFilter && matchSearch;
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    updateCount(visible);
+    document.getElementById('empty-state').classList.toggle('visible', visible === 0);
+  }
+
+  function updateCount(n) {
+    if (n === undefined) n = document.querySelectorAll('.game-card:not(.hidden)').length;
+    document.getElementById('results-count').textContent = n + ' game' + (n !== 1 ? 's' : '');
+  }
+
+  // ─── Buy Modal ───────────────────────────────────────────────────────────────
+  const modalOverlay = document.getElementById('game-modal');
+  const modalContent = document.getElementById('modal-content');
+
+  grid.addEventListener('click', e => {
+    const btn = e.target.closest('[data-game-id]');
+    if (!btn) return;
+    const game = GAMES.find(g => g.id === btn.dataset.gameId);
+    if (game) openBuyModal(game);
+  });
+
+  function openBuyModal(game) {
+    modalContent.innerHTML = `
+      <h2 class="modal-title">Get Access to ${game.name}</h2>
+      <p class="modal-desc">${game.desc}</p>
+      <ul class="modal-steps">
+        <li><strong>1.</strong> Visit the <a href="${game.gamestoreUrl || '#'}" target="_blank" rel="noopener noreferrer">Portfolio game store</a> on Roblox.</li>
+        <li><strong>2.</strong> Purchase the <strong>${game.name}</strong> gamepass for <strong>${game.price || '?'}</strong>.</li>
+        <li><strong>3.</strong> After buying, message me on <strong>Discord (radin5562)</strong> or <strong>Roblox</strong> with your username and the game name — I'll give you access within 24 hours.</li>
+      </ul>
+      <a href="${game.gamestoreUrl || '#'}" target="_blank" rel="noopener noreferrer">
+        <button class="modal-cta-btn">Go to Game Store — ${game.price || '?'}</button>
+      </a>`;
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  function closeModal() { modalOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+  // ─── Nav scroll ──────────────────────────────────────────────────────────────
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+  const menuBtn = document.getElementById('nav-menu-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  menuBtn.addEventListener('click', () => { const o = mobileNav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', String(o)); });
+  function closeMobileNav() { mobileNav.classList.remove('open'); }
+</script>
+</body>
+</html>

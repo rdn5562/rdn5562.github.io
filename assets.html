@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assets — Radin Dev Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-0: #0c0d0f;
+      --bg-2: #181b1f;
+      --bg-3: #1e2227;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.14);
+      --text-primary: #f0f1f3;
+      --text-secondary: #8b909a;
+      --text-muted: #52575f;
+      --accent: #4f8ef7;
+      --accent-dim: rgba(79,142,247,0.12);
+      --green: #3ecf8e;
+      --amber: #f5a623;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg-0); color: var(--text-primary); font-family: var(--font-display); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-0); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-3); border-radius: 0; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; transition: background var(--transition), backdrop-filter var(--transition); }
+    nav.scrolled { background: rgba(12,13,15,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-inner { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-left { display: flex; align-items: center; gap: 14px; }
+    .nav-mode-btn { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; transition: border-color var(--transition), color var(--transition), background var(--transition); white-space: nowrap; cursor: pointer; }
+    .nav-mode-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .nav-logo { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--text-secondary); transition: color var(--transition); }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--text-primary); }
+    .nav-cta { font-size: 13px; font-weight: 600; color: var(--accent); border: 1px solid rgba(79,142,247,0.35); padding: 7px 18px; border-radius: 6px; transition: background var(--transition), border-color var(--transition); }
+    .nav-cta:hover { background: var(--accent-dim); border-color: var(--accent); }
+    .nav-menu-btn { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+    .nav-menu-btn span { display: block; width: 22px; height: 1.5px; background: var(--text-secondary); border-radius: 2px; }
+    .mobile-nav { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(12,13,15,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 24px; flex-direction: column; gap: 14px; z-index: 99; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 16px; font-weight: 500; color: var(--text-secondary); padding: 8px 0; border-bottom: 1px solid var(--border); }
+    @media (max-width: 640px) { .nav-links { display: none; } .nav-cta { display: none; } .nav-menu-btn { display: flex; } }
+
+    /* Page Header */
+    .page-header { padding: 120px 0 60px; background: var(--bg-0); }
+    .section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+    .section-subtitle { font-size: 15px; color: var(--text-secondary); line-height: 1.7; max-width: 520px; }
+
+    /* Search & Filter Bar */
+    .controls-bar { padding: 28px 0; background: var(--bg-0); border-bottom: 1px solid var(--border); position: sticky; top: 60px; z-index: 50; backdrop-filter: blur(12px); }
+    .controls-inner { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .search-wrap { position: relative; flex: 1; min-width: 220px; }
+    .search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+    .search-input { width: 100%; background: var(--bg-2); border: 1px solid var(--border); color: var(--text-primary); font-family: var(--font-display); font-size: 14px; padding: 11px 14px 11px 42px; outline: none; transition: border-color var(--transition); }
+    .search-input::placeholder { color: var(--text-muted); }
+    .search-input:focus { border-color: var(--accent); }
+    .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-btn { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--border); color: var(--text-secondary); background: var(--bg-2); border-radius: 0; cursor: pointer; transition: all var(--transition); }
+    .filter-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+    .filter-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .results-count { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); margin-left: auto; white-space: nowrap; }
+
+    /* Asset Grid */
+    .assets-section { padding: 40px 0 80px; background: var(--bg-0); }
+    .assets-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 900px) { .assets-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .assets-grid { grid-template-columns: 1fr; } }
+
+    .asset-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 0; overflow: hidden; transition: border-color var(--transition), transform var(--transition); display: flex; flex-direction: column; }
+    .asset-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+    .asset-card.hidden { display: none; }
+    .asset-thumb { aspect-ratio: 16/9; background: var(--bg-3); display: flex; align-items: center; justify-content: center; font-size: 48px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border); }
+    .asset-thumb-emoji { font-size: 52px; }
+    .asset-badge { position: absolute; top: 10px; right: 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 4px; font-weight: 700; }
+    .badge-free { background: rgba(62,207,142,0.18); color: var(--green); border: 1px solid rgba(62,207,142,0.3); }
+    .badge-paid { background: rgba(245,166,35,0.18); color: var(--amber); border: 1px solid rgba(245,166,35,0.3); }
+    .asset-body { padding: 18px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+    .asset-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .asset-tag { font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); background: var(--accent-dim); border-radius: 4px; padding: 3px 7px; }
+    .asset-name { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+    .asset-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+    .asset-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--border); margin-top: 4px; }
+    .asset-price { font-family: var(--font-mono); font-size: 13px; font-weight: 700; }
+    .price-free { color: var(--green); }
+    .price-paid { color: var(--amber); }
+    .asset-btn { font-size: 12px; font-weight: 600; padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: opacity var(--transition), transform var(--transition); font-family: var(--font-display); border: none; }
+    .asset-btn-free { background: rgba(62,207,142,0.18); color: var(--green); border: 1px solid rgba(62,207,142,0.3); }
+    .asset-btn-free:hover { opacity: 0.8; transform: translateY(-1px); }
+    .asset-btn-paid { background: rgba(245,166,35,0.18); color: var(--amber); border: 1px solid rgba(245,166,35,0.3); }
+    .asset-btn-paid:hover { opacity: 0.8; transform: translateY(-1px); }
+
+    /* Download Modal */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(8,9,11,0.92); backdrop-filter: blur(12px); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box { background: var(--bg-2); border: 1px solid var(--border); border-radius: 0; max-width: 480px; width: 100%; padding: 32px; transform: scale(0.96) translateY(12px); transition: transform 0.25s cubic-bezier(0.4,0,0.2,1); position: relative; }
+    .modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
+    .modal-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: var(--bg-3); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-secondary); font-size: 14px; transition: color var(--transition); }
+    .modal-close:hover { color: var(--text-primary); }
+    .modal-title { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .modal-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 24px; }
+    .modal-dl-btn { display: block; width: 100%; text-align: center; background: var(--green); color: #0c0d0f; font-size: 14px; font-weight: 700; padding: 13px 24px; border-radius: 8px; cursor: pointer; transition: opacity var(--transition); border: none; font-family: var(--font-display); }
+    .modal-dl-btn:hover { opacity: 0.88; }
+    .modal-paid-info { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+    .modal-paid-info a { color: var(--accent); text-decoration: underline; }
+    .modal-paid-info strong { color: var(--text-primary); }
+
+    /* Empty state */
+    .empty-state { padding: 80px 0; text-align: center; color: var(--text-muted); font-family: var(--font-mono); font-size: 13px; display: none; }
+    .empty-state.visible { display: block; }
+
+    footer { border-top: 1px solid var(--border); padding: 24px 0; background: var(--bg-0); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); transition: color var(--transition); }
+    .footer-links a:hover { color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a href="studio.html" class="nav-mode-btn">Studio</a>
+      <a href="index.html" class="nav-logo">Radin</a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="assets.html" class="active">Assets</a>
+      <a href="games.html">Games</a>
+      <a href="index.html#showcase">Play</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#contact" class="nav-cta">Hire Me</a>
+    </div>
+    <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="studio.html" onclick="closeMobileNav()">Studio Mode</a>
+  <a href="index.html#about" onclick="closeMobileNav()">About</a>
+  <a href="index.html#projects" onclick="closeMobileNav()">Projects</a>
+  <a href="assets.html" onclick="closeMobileNav()">Assets</a>
+  <a href="games.html" onclick="closeMobileNav()">Games</a>
+  <a href="index.html#showcase" onclick="closeMobileNav()">Play</a>
+  <a href="index.html#skills" onclick="closeMobileNav()">Skills</a>
+  <a href="index.html#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<div class="page-header">
+  <div class="container">
+    <p class="section-label">Assets</p>
+    <h1 class="section-title">Scripts, Systems &amp; Tools</h1>
+    <p class="section-subtitle">Free and paid Roblox assets I've built. Free ones download right here — paid ones link to the Roblox game store, then message me your username and what you bought.</p>
+  </div>
+</div>
+
+<div class="controls-bar">
+  <div class="container">
+    <div class="controls-inner">
+      <div class="search-wrap">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M10 6.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-.7 3.24 2.5 2.5-.7.7-2.5-2.5a4.5 4.5 0 1 1 .7-.7Z" fill="currentColor"/></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search assets…" autocomplete="off" />
+      </div>
+      <div class="filter-group" id="filter-group">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="free">Free</button>
+        <button class="filter-btn" data-filter="paid">Paid</button>
+        <button class="filter-btn" data-filter="system">Systems</button>
+        <button class="filter-btn" data-filter="ui">UI</button>
+        <button class="filter-btn" data-filter="utility">Utility</button>
+      </div>
+      <span class="results-count" id="results-count">0 assets</span>
+    </div>
+  </div>
+</div>
+
+<section class="assets-section">
+  <div class="container">
+    <div class="assets-grid" id="assets-grid"></div>
+    <div class="empty-state" id="empty-state">no assets match your search.</div>
+  </div>
+</section>
+
+<!-- Download / Buy Modal -->
+<div class="modal-overlay" id="asset-modal">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-copy">radin · portfolio</span>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="games.html">Games</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── Asset Data ─────────────────────────────────────────────────────────────
+  // Add more assets here. For free assets, set `downloadUrl` to your file/pastebin link.
+  // For paid assets, set `gamestoreUrl` to your Roblox game store link.
+  const ASSETS = [
+    {
+      id: 'datastore-wrapper',
+      name: 'DataStore Wrapper',
+      emoji: '🗄️',
+      tags: ['system', 'utility'],
+      type: 'free',
+      price: 'Free',
+      desc: 'A clean, session-locked DataStore wrapper with auto-retry, queue management, and cross-server data safety. Drop-in replacement for ProfileService patterns.',
+      downloadUrl: '#', // Replace with your actual download link
+      note: 'Paste your download URL into the script to enable this button.'
+    },
+    {
+      id: 'antilag-system',
+      name: 'Anti-Lag NPC System',
+      emoji: '🤖',
+      tags: ['system', 'utility'],
+      type: 'free',
+      price: 'Free',
+      desc: 'LOD-based NPC system that freezes pathfinding and animations on NPCs far from any player. Drops server script time by 40–70% in heavy NPC maps.',
+      downloadUrl: '#',
+      note: 'Paste your download URL into the script to enable this button.'
+    },
+    {
+      id: 'gui-framework',
+      name: 'Reactive GUI Framework',
+      emoji: '🖥️',
+      tags: ['ui', 'utility'],
+      type: 'paid',
+      price: '250 R$',
+      desc: 'A signal-based reactive UI library for Roblox. Bind data directly to GUI elements — values update automatically. Includes tween manager and component system.',
+      gamestoreUrl: 'https://www.roblox.com/games/9269971411/Portfolio',
+      gamepassId: '12345678' // Replace with actual gamepass ID
+    },
+    {
+      id: 'chunk-terrain',
+      name: 'Chunk Terrain Generator',
+      emoji: '🌊',
+      tags: ['system'],
+      type: 'paid',
+      price: '400 R$',
+      desc: 'The exact chunk-based ocean terrain system from Dive. Procedural underwater terrain with column-height sampling, smooth LOD transitions, and async generation.',
+      gamestoreUrl: 'https://www.roblox.com/games/9269971411/Portfolio',
+      gamepassId: '87654321'
+    },
+    {
+      id: 'tween-util',
+      name: 'TweenUtil',
+      emoji: '✨',
+      tags: ['ui', 'utility'],
+      type: 'free',
+      price: 'Free',
+      desc: 'Chainable tween helper with promise support, spring physics mode, and a simple API. Wraps TweenService with saner defaults and cancellation.',
+      downloadUrl: '#',
+      note: 'Paste your download URL into the script to enable this button.'
+    },
+    {
+      id: 'hitbox-system',
+      name: 'Custom Hitbox System',
+      emoji: '⚔️',
+      tags: ['system'],
+      type: 'paid',
+      price: '150 R$',
+      desc: 'Server-authoritative hitbox detection with lag compensation. Works with any tool or melee system. Includes visualization mode for debugging.',
+      gamestoreUrl: 'https://www.roblox.com/games/9269971411/Portfolio',
+      gamepassId: '11223344'
+    },
+  ];
+
+  // ─── Render ──────────────────────────────────────────────────────────────────
+  const grid = document.getElementById('assets-grid');
+
+  function renderCard(a) {
+    const card = document.createElement('article');
+    card.className = 'asset-card';
+    card.dataset.id = a.id;
+    card.dataset.type = a.type;
+    card.dataset.tags = a.tags.join(' ');
+    card.dataset.name = a.name.toLowerCase();
+
+    const badgeClass = a.type === 'free' ? 'badge-free' : 'badge-paid';
+    const badgeLabel = a.type === 'free' ? 'Free' : 'Paid';
+    const priceClass = a.type === 'free' ? 'price-free' : 'price-paid';
+    const btnClass = a.type === 'free' ? 'asset-btn asset-btn-free' : 'asset-btn asset-btn-paid';
+    const btnLabel = a.type === 'free' ? 'Download' : 'Buy — ' + a.price;
+
+    card.innerHTML = `
+      <div class="asset-thumb">
+        <span class="asset-thumb-emoji">${a.emoji}</span>
+        <span class="asset-badge ${badgeClass}">${badgeLabel}</span>
+      </div>
+      <div class="asset-body">
+        <div class="asset-tags">${a.tags.map(t=>`<span class="asset-tag">${t}</span>`).join('')}</div>
+        <div class="asset-name">${a.name}</div>
+        <div class="asset-desc">${a.desc}</div>
+        <div class="asset-footer">
+          <span class="asset-price ${priceClass}">${a.price}</span>
+          <button class="${btnClass}" data-asset-id="${a.id}">${btnLabel}</button>
+        </div>
+      </div>`;
+    return card;
+  }
+
+  ASSETS.forEach(a => grid.appendChild(renderCard(a)));
+  updateCount();
+
+  // ─── Search & Filter ─────────────────────────────────────────────────────────
+  let activeFilter = 'all';
+
+  document.getElementById('filter-group').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    applyFilters();
+  });
+
+  document.getElementById('search-input').addEventListener('input', applyFilters);
+
+  function applyFilters() {
+    const q = document.getElementById('search-input').value.toLowerCase().trim();
+    let visible = 0;
+    document.querySelectorAll('.asset-card').forEach(card => {
+      const matchType = activeFilter === 'all' || card.dataset.type === activeFilter;
+      const matchTag = activeFilter === 'all' || card.dataset.tags.includes(activeFilter) || card.dataset.type === activeFilter;
+      const matchSearch = !q || card.dataset.name.includes(q) || card.querySelector('.asset-desc').textContent.toLowerCase().includes(q);
+      const show = (activeFilter === 'all' ? true : (card.dataset.type === activeFilter || card.dataset.tags.includes(activeFilter))) && matchSearch;
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    updateCount(visible);
+    document.getElementById('empty-state').classList.toggle('visible', visible === 0);
+  }
+
+  function updateCount(n) {
+    if (n === undefined) n = document.querySelectorAll('.asset-card:not(.hidden)').length;
+    document.getElementById('results-count').textContent = n + ' asset' + (n !== 1 ? 's' : '');
+  }
+
+  // ─── Modal ───────────────────────────────────────────────────────────────────
+  const modalOverlay = document.getElementById('asset-modal');
+  const modalContent = document.getElementById('modal-content');
+
+  grid.addEventListener('click', e => {
+    const btn = e.target.closest('[data-asset-id]');
+    if (!btn) return;
+    const asset = ASSETS.find(a => a.id === btn.dataset.assetId);
+    if (!asset) return;
+    openModal(asset);
+  });
+
+  function openModal(asset) {
+    if (asset.type === 'free') {
+      modalContent.innerHTML = `
+        <h2 class="modal-title">${asset.name}</h2>
+        <p class="modal-desc">${asset.desc}</p>
+        ${asset.note ? `<p style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono);margin-bottom:16px;">${asset.note}</p>` : ''}
+        <a href="${asset.downloadUrl}" target="_blank" rel="noopener noreferrer">
+          <button class="modal-dl-btn">Download Free</button>
+        </a>`;
+    } else {
+      modalContent.innerHTML = `
+        <h2 class="modal-title">${asset.name}</h2>
+        <p class="modal-desc">${asset.desc}</p>
+        <div class="modal-paid-info">
+          <p style="margin-bottom:12px;">To buy this asset:</p>
+          <p style="margin-bottom:8px;"><strong>1.</strong> Go to the <a href="${asset.gamestoreUrl}" target="_blank" rel="noopener noreferrer">Portfolio game store</a> and purchase the gamepass for <strong>${asset.price}</strong>.</p>
+          <p style="margin-bottom:16px;"><strong>2.</strong> After buying, message me on <strong>Discord (radin5562)</strong> or <strong>Roblox</strong> with your username and the asset name.</p>
+          <a href="${asset.gamestoreUrl}" target="_blank" rel="noopener noreferrer">
+            <button class="modal-dl-btn" style="background:var(--amber);color:#0c0d0f;">Go to Game Store — ${asset.price}</button>
+          </a>
+        </div>`;
+    }
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  function closeModal() { modalOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+  // ─── Nav scroll ──────────────────────────────────────────────────────────────
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+  const menuBtn = document.getElementById('nav-menu-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  menuBtn.addEventListener('click', () => { const o = mobileNav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', String(o)); });
+  function closeMobileNav() { mobileNav.classList.remove('open'); }
+</script>
+</body>
+</html>
