@@ -322,27 +322,6 @@
       color: var(--text-primary);
       font-weight: 700;
     }
-    .hero-stats {
-      display: flex;
-      gap: 40px;
-      margin-top: 64px;
-      padding-top: 40px;
-      border-top: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-    .hero-stat-value {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      color: var(--text-primary);
-    }
-    .hero-stat-label {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 2px;
-      font-family: var(--font-mono);
-      letter-spacing: 0.05em;
-    }
 
     #about { background: var(--bg-0); }
     .about-grid {
@@ -1043,7 +1022,6 @@
       .nav-links { display: none; }
       .nav-cta { display: none; }
       .nav-menu-btn { display: flex; }
-      .hero-stats { gap: 24px; }
       .skills-grid { grid-template-columns: 1fr; }
       .stats-body { grid-template-columns: 1fr 1fr; }
       .modal-stats { grid-template-columns: repeat(3, 1fr); }
@@ -1105,24 +1083,6 @@
         </a>
       </div>
       <p class="hero-rating"><strong>4.8</strong> client rating from 23 projects</p>
-      <!--<div class="hero-stats" role="region" aria-label="Key statistics">
-        <div>
-          <div class="hero-stat-value" id="stat-visits">0</div>
-          <div class="hero-stat-label">Total Visits</div>
-        </div>
-        <div>
-          <div class="hero-stat-value" id="stat-games">0</div>
-          <div class="hero-stat-label">Games Shipped</div>
-        </div>
-        <div>
-          <div class="hero-stat-value" id="stat-years">0</div>
-          <div class="hero-stat-label">Years Building</div>
-        </div>
-        <div>
-          <div class="hero-stat-value" id="stat-players">0</div>
-          <div class="hero-stat-label">Peak Concurrent</div>
-        </div>
-      </div>-->
     </div>
   </div>
 </section>
@@ -1468,10 +1428,10 @@
     if (rect.bottom > 0) {
       countersStarted = true;
       setTimeout(() => {
-        animateCount(document.getElementById('stat-visits'), 44800);
-        animateCount(document.getElementById('stat-games'), 14);
-        animateCount(document.getElementById('stat-years'), 9);
-        animateCount(document.getElementById('stat-players'), 9100);
+        animateCount(document.getElementById('stat-visits'), 0);
+        animateCount(document.getElementById('stat-games'), 0);
+        animateCount(document.getElementById('stat-years'), 0);
+        animateCount(document.getElementById('stat-players'), 0);
       }, 300);
     }
   }
