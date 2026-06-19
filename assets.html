@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Assets — Radin Dev Portfolio</title>
+  <title>Radin Dev Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -35,7 +35,6 @@
     ::-webkit-scrollbar-thumb { background: var(--bg-3); border-radius: 0; }
     .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
 
-    /* Nav */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; transition: background var(--transition), backdrop-filter var(--transition); }
     nav.scrolled { background: rgba(12,13,15,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
     .nav-inner { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
@@ -56,13 +55,11 @@
     .mobile-nav a { font-size: 16px; font-weight: 500; color: var(--text-secondary); padding: 8px 0; border-bottom: 1px solid var(--border); }
     @media (max-width: 640px) { .nav-links { display: none; } .nav-cta { display: none; } .nav-menu-btn { display: flex; } }
 
-    /* Page Header */
     .page-header { padding: 120px 0 60px; background: var(--bg-0); }
     .section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
     .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
     .section-subtitle { font-size: 15px; color: var(--text-secondary); line-height: 1.7; max-width: 520px; }
 
-    /* Search & Filter Bar */
     .controls-bar { padding: 28px 0; background: var(--bg-0); border-bottom: 1px solid var(--border); position: sticky; top: 60px; z-index: 50; backdrop-filter: blur(12px); }
     .controls-inner { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
     .search-wrap { position: relative; flex: 1; min-width: 220px; }
@@ -76,7 +73,6 @@
     .filter-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
     .results-count { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); margin-left: auto; white-space: nowrap; }
 
-    /* Asset Grid */
     .assets-section { padding: 40px 0 80px; background: var(--bg-0); }
     .assets-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     @media (max-width: 900px) { .assets-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -120,7 +116,6 @@
     .modal-paid-info a { color: var(--accent); text-decoration: underline; }
     .modal-paid-info strong { color: var(--text-primary); }
 
-    /* Empty state */
     .empty-state { padding: 80px 0; text-align: center; color: var(--text-muted); font-family: var(--font-mono); font-size: 13px; display: none; }
     .empty-state.visible { display: block; }
 
@@ -167,7 +162,7 @@
   <div class="container">
     <p class="section-label">Assets</p>
     <h1 class="section-title">Scripts, Systems &amp; Tools</h1>
-    <p class="section-subtitle">Free and paid Roblox assets I've built. Free ones download right here — paid ones link to the Roblox game store, then message me your username and what you bought.</p>
+    <p class="section-subtitle">Free and paid Roblox assets Ive built. Free ones download right here  paid ones link to the Roblox game store, then message me your username and what you bought.</p>
   </div>
 </div>
 
@@ -220,79 +215,31 @@
 </footer>
 
 <script>
-  // ─── Asset Data ─────────────────────────────────────────────────────────────
-  // Add more assets here. For free assets, set `downloadUrl` to your file/pastebin link.
-  // For paid assets, set `gamestoreUrl` to your Roblox game store link.
   const ASSETS = [
     {
       id: 'datastore-wrapper',
-      name: 'DataStore Wrapper',
-      emoji: '🗄️',
+      name: 'DataStore Module',
+      emoji: '👺',
       tags: ['system', 'utility'],
       type: 'free',
       price: 'Free',
-      desc: 'A clean, session-locked DataStore wrapper with auto-retry, queue management, and cross-server data safety. Drop-in replacement for ProfileService patterns.',
-      downloadUrl: '#', // Replace with your actual download link
-      note: 'Paste your download URL into the script to enable this button.'
+      desc: 'Ever find using databases hard? do you wish there was a way that you could build full game databases in seconds? this module is perfect for exactly that! Guid included Inside the script',
+      downloadUrl: 'https://create.roblox.com/store/asset/124065517834171/DatabaseModule', // Replace with your actual download link
+      note: 'maek sure to use the module from a server script since databases arent accesible from the client.'
     },
     {
       id: 'antilag-system',
       name: 'Anti-Lag NPC System',
-      emoji: '🤖',
+      emoji: '🐪',
       tags: ['system', 'utility'],
       type: 'free',
       price: 'Free',
-      desc: 'LOD-based NPC system that freezes pathfinding and animations on NPCs far from any player. Drops server script time by 40–70% in heavy NPC maps.',
-      downloadUrl: '#',
-      note: 'Paste your download URL into the script to enable this button.'
-    },
-    {
-      id: 'gui-framework',
-      name: 'Reactive GUI Framework',
-      emoji: '🖥️',
-      tags: ['ui', 'utility'],
-      type: 'paid',
-      price: '250 R$',
-      desc: 'A signal-based reactive UI library for Roblox. Bind data directly to GUI elements — values update automatically. Includes tween manager and component system.',
-      gamestoreUrl: 'https://www.roblox.com/games/9269971411/Portfolio',
-      gamepassId: '12345678' // Replace with actual gamepass ID
-    },
-    {
-      id: 'chunk-terrain',
-      name: 'Chunk Terrain Generator',
-      emoji: '🌊',
-      tags: ['system'],
-      type: 'paid',
-      price: '400 R$',
-      desc: 'The exact chunk-based ocean terrain system from Dive. Procedural underwater terrain with column-height sampling, smooth LOD transitions, and async generation.',
-      gamestoreUrl: 'https://www.roblox.com/games/9269971411/Portfolio',
-      gamepassId: '87654321'
-    },
-    {
-      id: 'tween-util',
-      name: 'TweenUtil',
-      emoji: '✨',
-      tags: ['ui', 'utility'],
-      type: 'free',
-      price: 'Free',
-      desc: 'Chainable tween helper with promise support, spring physics mode, and a simple API. Wraps TweenService with saner defaults and cancellation.',
-      downloadUrl: '#',
-      note: 'Paste your download URL into the script to enable this button.'
-    },
-    {
-      id: 'hitbox-system',
-      name: 'Custom Hitbox System',
-      emoji: '⚔️',
-      tags: ['system'],
-      type: 'paid',
-      price: '150 R$',
-      desc: 'Server-authoritative hitbox detection with lag compensation. Works with any tool or melee system. Includes visualization mode for debugging.',
-      gamestoreUrl: 'https://www.roblox.com/games/9269971411/Portfolio',
-      gamepassId: '11223344'
+      desc: 'LOD based NPC system that freezes pathfinding and animations on NPCs far from any player. Drops server script time by 40–70% in heavy NPC maps. similar system used in Dive to reduce lag on the server due to high amount of fish in the map',
+      downloadUrl: 'https://create.roblox.com/store/',
+      note: 'Asset is still being prepared, download is unavailable'
     },
   ];
 
-  // ─── Render ──────────────────────────────────────────────────────────────────
   const grid = document.getElementById('assets-grid');
 
   function renderCard(a) {
@@ -329,7 +276,6 @@
   ASSETS.forEach(a => grid.appendChild(renderCard(a)));
   updateCount();
 
-  // ─── Search & Filter ─────────────────────────────────────────────────────────
   let activeFilter = 'all';
 
   document.getElementById('filter-group').addEventListener('click', e => {
@@ -363,7 +309,6 @@
     document.getElementById('results-count').textContent = n + ' asset' + (n !== 1 ? 's' : '');
   }
 
-  // ─── Modal ───────────────────────────────────────────────────────────────────
   const modalOverlay = document.getElementById('asset-modal');
   const modalContent = document.getElementById('modal-content');
 
@@ -406,7 +351,6 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   function closeModal() { modalOverlay.classList.remove('open'); document.body.style.overflow = ''; }
 
-  // ─── Nav scroll ──────────────────────────────────────────────────────────────
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
   const menuBtn = document.getElementById('nav-menu-btn');
