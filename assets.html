@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,24 +7,24 @@
   <title>Radin Dev Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  
   <style>
     :root {
-      --bg-0: #0c0d0f;
-      --bg-2: #181b1f;
-      --bg-3: #1e2227;
-      --border: rgba(255,255,255,0.07);
-      --border-hover: rgba(255,255,255,0.14);
-      --text-primary: #f0f1f3;
-      --text-secondary: #8b909a;
-      --text-muted: #52575f;
-      --accent: #2656a9;
-      --accent-dim: rgba(79,142,247,0.12);
-      --green: #ffffff;
-      --amber: #f5a623;
-      --font-display: 'Space Grotesk', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --bg-0: #0b0c0f;
+      --bg-2: #111318;
+      --bg-3: #161a22;
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(255,255,255,0.12);
+      --text-primary: #e6e6e6;
+      --text-secondary: #9aa3ad;
+      --text-muted: #6b7280;
+      --accent: #6b7cff;
+      --accent-dim: rgba(107,124,255,0.12);
+      --green: #e6e6e6;
+      --amber: #d4a24c;
+      --font-display: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --transition: 0.2s ease;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -124,7 +125,44 @@
     .footer-links { display: flex; gap: 24px; }
     .footer-links a { font-size: 13px; color: var(--text-muted); transition: color var(--transition); }
     .footer-links a:hover { color: var(--text-secondary); }
-  </style>
+  
+/* Minimalist UI overrides */
+* {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+body {
+  letter-spacing: -0.01em;
+}
+
+section, .section, .card, .panel, .box {
+  border-radius: 6px !important;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+p {
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+button, .btn, a.button {
+  border-radius: 6px !important;
+  background: var(--bg-3) !important;
+  border: 1px solid var(--border) !important;
+}
+
+hr {
+  border-color: var(--border) !important;
+  opacity: 0.5;
+}
+
+
+</style>
 </head>
 <body>
 
